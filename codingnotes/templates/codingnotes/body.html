@@ -1,44 +1,32 @@
 {% include "codingnotes/base_template.html" %}
 
-
 {% block body %}
 <div>
     <form action="#"  method="post">
 
-          <h1>Login</h1>
-          <label><b>Enter Search</b></label>
           <input type="text" placeholder="Enter search " name="search_titles">
-          <label for="psw"><b>Tags</b></label>
-          <input type="password" placeholder="Enter Password: " name="search_tags" required>
           <button class="button" type="submit">Search</button>
 
-      </form>
-
+    </form>
 </div>
-
+<div>
+    All Tags
+    {% for items in tags %}
+    {{items.all_tags}}
+    {%endfor%}
+</div>
 
 <div>
-
-    
     <ul>
         {% for items in notes %}
-
         <li> 
-
-            <h1>This is from the name variable from views {{ items.title }}</h1> <br/> 
-            <h2>tags: {{items.tags}}</h2><br/> 
-            <p> This is the body of the notes {{ items.body }}</p><br/> 
-
+            Title: {{ items.title }}<br/>
+            tags: {{items.tags}}<br/>
+            {{ items.body }}
         </li>
-
         {% endfor %}
     </ul>
-
-    
-
 </div>
-
-
 
 {% endblock %} 
 
