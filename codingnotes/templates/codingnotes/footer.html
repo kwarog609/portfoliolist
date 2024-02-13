@@ -2,9 +2,4 @@
 {% block footer %}
 <p>This is the footer</p>
 
-<form method="POST" action="#createnewpost">
-    {% csrf_token %}
-    {{forms}}
-    <button type="submit", name="create notes"> Create New note</button>
-</form>
 {% endblock footer%}

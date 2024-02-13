@@ -1,22 +1,26 @@
-{% include "codingnotes/base_template.html" %}
+{% extends "codingnotes/base_template.html" %}
 
 {% block body %}
 <div>
     <form action="#"  method="post">
-
-          <input type="text" placeholder="Enter search " name="search_titles">
-          <button class="button" type="submit">Search</button>
-
+        <input type="text" class="form-control form-control-lg" placeholder="enter search">
+        <button class="button" type="submit">Search</button>
     </form>
+    <a href="createpost.html"><button type="button" class="btn btn-outline-success">Create New Post</button></a>
+
 </div>
 <div>
-    All Tags
+    {%block mainbody%} {%endblock mainbody%}
+</div>
+<div class="container d-flex justify-content-center">
+    <ul class="list-group list-group-horizontal">
     {% for items in tags %}
-    {{items.all_tags}}
+    <li class="list-group-item"> {{items.all_tags}} </li>
     {%endfor%}
+    </ul>
 </div>
 
-<div>
+<div class="container d-flex justify-content-center">
     <ul>
         {% for items in notes %}
         <li> 
@@ -29,4 +33,6 @@
 </div>
 
 {% endblock %} 
+
+
 

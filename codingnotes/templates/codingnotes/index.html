@@ -1,12 +1,12 @@
-{% include "codingnotes/body.html" %}
+{% extends "codingnotes/body.html" %}
 
 
 
-{% block body %}
+{% block mainbody %}
 
-<p>
-This is the index
-</p>
-{% endblock %} 
 
+{% endblock mainbody%} 
+
+{% block footer %}
 {% include "codingnotes/footer.html" %}
+{% endblock footer %}
