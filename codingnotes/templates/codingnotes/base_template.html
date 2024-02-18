@@ -6,19 +6,32 @@
     {% bootstrap_javascript %}
 </head>
     <body>
-        
         <div class="container p-5 my-5 border text-center">
-        
-            <h1> Coding Notes</h1>
-        {% block body %}
+        <table class="table table-striped-columns">
+        <tr> <td>
+            This is header
+            </td>
+        </tr>
+        <tr style="height:200px"> <td> This is leftside </td>
+            <td>
+            This is body
+            <div class="container p-5 my-5 border text-center">
+            
+                <h1> Coding Notes</h1>
+            {% block body %}
 
-        {% endblock body %}
-        
-        {% block footer %}
+            {% endblock body %}
+            
+            {% block footer %}
 
-        {% endblock footer %}
+            {% endblock footer %}
+            </div>
+            </td>
+            <td> This is rightside </td>
+        </tr>
+        <tr> <td>>This is the footer </td</tr>
+        </table>
         </div>
-
     </body>
 
 </html>
