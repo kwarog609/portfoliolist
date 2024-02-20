@@ -1,0 +1,29 @@
+
+
+{% block body %}
+
+The body
+
+<h1> {{num1}} + {{num2}}</h1>
+<h1>
+{{answer}}
+
+</h1>
+<div style align="center">
+<form type="POST" action="#answer">
+    {% for item in choice %}
+    <button type="submit", name="choice{{item}}"> {{item}}</button>
+    {% endfor %}
+
+
+    {% if item == answer %}
+        This is the answer
+    {% else %}
+        Wrong answer
+    {% endif %}
+
+</form>
+
+</div>
+
+{% endblock body%} 

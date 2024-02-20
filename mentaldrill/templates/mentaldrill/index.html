@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -11,6 +12,12 @@
         <table class="table table-striped-columns">
         <tr> <td>
                 This is the header
+                <form method="POST" action="startgame.html">
+                    {% csrf_token %}
+                    <input type="text" name="num1" placeholder="enter first number">
+                    <input type="text" name="num2" placeholder="enter second number">
+                    <button type="submit", name="start_btn"> Start</button>
+                </form>
             </td>
         </tr>
         <tr style="height:200px"> <td> This is leftside </td>
@@ -20,15 +27,20 @@
             
 
             {% block body %}
+                this is main body
 
             {% endblock body %}
             
-            {% block footer %}
+            
 
+            {% block footer %}
+            
             {% endblock footer %}
             </div>
             </td>
-            <td> This is rightside </td>
+            <td> This is rightside 
+                <button id="test_btn">Buttones</button> <script src="{% static 'counter.js' %}"> </script>
+            </td>
         </tr>
         <tr> <td>>This is the footer </td</tr>
         </table>
