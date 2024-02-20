@@ -1,15 +1,21 @@
 {% block search_results %}
-
+<div class="block py-5 my-4">
 <p> This is the results </p>
-
+{% autoescape on %}
 {% for items in notes %}
-<li> 
+
+<li class="list-group-item block text-start"> 
     Title: {{ items.title }}<br/>
-    {{ items.body }}
+    <pre><code>{{items.body|safe | linebreaks }}</code></pre>
+    
+    {{form.body.data}}
+
+    
     <br/>
 
 </li>
 <li></li>
 {% endfor %}
-
+{% endautoescape %}
+</div>
 {% endblock search_results%}
