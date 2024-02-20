@@ -1,5 +1,6 @@
 from django.db import models
-
+#from ckeditor.fields import RichTextField
+from tinymce import models as tinymce_models
 
 
 class ContentTag(models.Model):
@@ -9,6 +10,6 @@ class ContentTag(models.Model):
 class Notes(models.Model):
     title = models.CharField(max_length=300)
     tags = models.ManyToManyField(ContentTag) #separate class one title to many tags
-    body = models.TextField(max_length=5000)
+    body = tinymce_models.HTMLField()
 
 

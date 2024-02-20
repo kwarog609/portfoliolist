@@ -7,8 +7,8 @@ from django.db.models import Q
 # Create your views here.
 logger = logging.getLogger(__name__)
 
-notes = Notes.objects.all
-tag = ContentTag.objects.all
+notes = Notes()
+tag = ContentTag()
 
 def index(request):
     return render(request, "codingnotes/index.html",{
@@ -26,14 +26,14 @@ def create_new_notes(request):
         if form.is_valid():
             form.save()
             return render(request, "codingnotes/index.html",{
-                "notes": notes,
-                "tags": tag,
-                "forms": form,
+            })
+        else:
+            print("invalid")
+            return render(request, "codingnotes/index.html",{
             })
     elif request.method == 'GET':
+        print("this is get")
         return render(request, "codingnotes/createpost.html",{
-            "notes": notes,
-            "tags": tag,
             "forms": form,
         })
 
@@ -44,7 +44,7 @@ def search_results(request):
 
         return render(request, "codingnotes/index.html",{
             "notes": notes,
-            "tags": tag,
+
         })
 
     return render(request, "codingnotes/index.html",{

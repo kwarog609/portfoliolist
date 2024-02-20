@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "codingnotes",
     "bootstrap5",
  #   "ckeditor",
+    'tinymce',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -118,3 +119,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+"""
+CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'basic',
+        'height': 300,
+        'width': 300,   
+    },
+}
+"""

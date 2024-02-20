@@ -1,9 +1,10 @@
 {% extends "codingnotes/base_template.html" %}
 {% block body %}
 <div class="container d-flex justify-content-center"></div>
-<form method="POST" action="index.html">
+<form method="POST" action="createpost.html">
     {% csrf_token %}
-    {{forms}}
+    {{ forms.media }}
+    {{ forms.as_p }}
     <button type="submit", name="create notes"> Create New note</button>
 </form>
 <div></div>
