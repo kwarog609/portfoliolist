@@ -1,5 +1,5 @@
 from django.db import models
-#from ckeditor.fields import RichTextField
+
 from tinymce import models as tinymce_models
 
 

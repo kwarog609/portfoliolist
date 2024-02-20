@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+    <body>
+        <div class="container p-5 my-5 border text-center">
+            <h1>Mental Drill</h1>
+        <table class="table table-striped-columns">
+        <tr> <td>
+                This is the header
+            </td>
+        </tr>
+        <tr style="height:200px"> <td> This is leftside </td>
+            <td>
+            This is body
+            <div class="container p-5 my-5 border text-center">
+            
+
+            {% block body %}
+
+            {% endblock body %}
+            
+            {% block footer %}
+
+            {% endblock footer %}
+            </div>
+            </td>
+            <td> This is rightside </td>
+        </tr>
+        <tr> <td>>This is the footer </td</tr>
+        </table>
+        </div>
+    </body>
+
+</html>

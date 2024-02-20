@@ -31,16 +31,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "portfoliohome",
     "codingnotes",
-    "bootstrap5",
-    'tinymce',
-    'pygments',
+    'chesskidtrainer',
+    'mentaldrill',
+    'phonicsreading',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "bootstrap5",
+    'tinymce',
+    'pygments',
 ]
 
 MIDDLEWARE = [
