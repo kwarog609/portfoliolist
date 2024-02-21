@@ -1,7 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -14,8 +14,26 @@
                 This is the header
                 <form method="POST" action="startgame.html">
                     {% csrf_token %}
-                    <input type="text" name="num1" placeholder="enter first number">
+                    <select name="level" id="level">
+                        {% for option in level %}
+                        {% if option == chosen_level %}
+                        <option value="{{option}}" selected>{{option}}</option>
+                        {%else%}
+                        <option value="{{option}}">{{option}}</option>
+                        {%endif%}
+                        {%endfor%}
+                      </select>
+                    <input type="text" name="time_limit" placeholder="time limit">
                     <input type="text" name="num2" placeholder="enter second number">
+                    <select name="operator" id="operator">
+                        {% for option in operator %}
+                        {% if option == chosen_operator %}
+                        <option value="{{option}}" selected>{{option}}</option>
+                        {%else%}
+                        <option value="{{option}}">{{option}}</option>
+                        {%endif%}
+                        {%endfor%}
+                      </select>
                     <button type="submit", name="start_btn"> Start</button>
                 </form>
             </td>
@@ -25,21 +43,13 @@
             This is body
             <div class="container p-5 my-5 border text-center">
             
+            {% block body %} this is main body {% endblock body %}
 
-            {% block body %}
-                this is main body
-
-            {% endblock body %}
-            
-            
-
-            {% block footer %}
-            
-            {% endblock footer %}
+            {% block footer %} {% endblock footer %}
             </div>
             </td>
             <td> This is rightside 
-                <button id="test_btn">Buttones</button> <script src="{% static 'counter.js' %}"> </script>
+
             </td>
         </tr>
         <tr> <td>>This is the footer </td</tr>

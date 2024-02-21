@@ -1,32 +1,85 @@
 from django.shortcuts import render
-import random
+import random, json
 
 # Create your views here.
+global_level = ['beginner', 'easy','medium','hard',]
+global_operator = ['addition','subtraction',]
 
 def add_two_numbers(x,y):
     """adds two numbers"""
     return x + y
 
+def subtract_two_numbers(x,y):
+    """subtracts two numbers"""
+    return x - y
+
+def choose_operator(operator, x, y):
+    if operator == 'addition':
+        return add_two_numbers(x,y)
+    elif operator == 'subtraction':
+        return subtract_two_numbers(x,y)
+    else:
+        return 0
+
+def process_inputs(request_data):
+    """process the input parameters and returns a answer, num2, num3 and choices"""
+    level = str.lower(str(request_data['level']))
+    operator = str.lower(str(request_data['operator']))
+    choice = []
+    ans = 0
+    choice_deviation = 0
+    if level == 'beginner':
+        print((request_data['level']))
+        num1 = random.randint(1,10)     #int(request.POST['num1'])
+        num2 = random.randint(1,10)     #int(request.POST['num2'])
+        choice_deviation = random.randint(1,10)
+    elif level == 'easy':
+        num1 = random.randint(1,20)     #int(request.POST['num1'])
+        num2 = random.randint(1,20)     #int(request.POST['num2'])
+        choice_deviation = random.randint(1,20)
+    elif level == 'medium':
+        num1 = random.randint(20,100)     #int(request.POST['num1'])
+        num2 = random.randint(20,100)     #int(request.POST['num2'])
+        choice_deviation = random.randint(20,80)
+    elif level == 'hard':
+        num1 = random.randint(500,1000)     #int(request.POST['num1'])
+        num2 = random.randint(500,1000)     #int(request.POST['num2'])
+        choice_deviation = random.randint(200,800)
+    else:
+        print("choose level")
+    ans = choose_operator(operator, num1, num2)
+    choice.append(ans)
+    choice.append(ans + choice_deviation)
+    choice.append(ans - choice_deviation)
+
+    return int(ans), num1, num2, choice
+    
 def index(request):
     return render(request, "mentaldrill/index.html",{
+        "level": global_level,
+        "operator": global_operator,
     })
 
 def startgame(request):
-    choice = []
+    """starts the game"""
     if request.method == "POST":
-        num1 = random.randint(1,10)     #int(request.POST['num1'])
-        num2 = random.randint(1,10)     #int(request.POST['num2'])
-        ans = add_two_numbers(num1, num2)
-        choice.append(ans)
-        choice.append(ans + random.randint(1,10))
-        choice.append(ans - random.randint(1,2))
-        return render(request, "mentaldrill/index.html",{
+        request_data = request.POST #request.POST.items
+        ans, num1, num2, choice = process_inputs(request_data)
+        operator = str(request.POST['operator']).lower()
+        print(operator)
+        return render(request, "mentaldrill/startgame.html",{
         "answer": ans,
         'num1': num1,
         'num2': num2,
         'choice': choice,
+        'chosen_operator': operator,
+        'chosen_level': str.lower(str(request_data['level'])),
+        "level": global_level,
+        "operator": global_operator,
         })
     else:
         return render(request, "mentaldrill/index.html",{
+        "level": global_level,
+        "operator": global_operator,
         })
 

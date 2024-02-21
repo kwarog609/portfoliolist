@@ -1,29 +1,24 @@
-
-
+{% extends 'mentaldrill/index.html' %}
+{% load static %}
 {% block body %}
 
 The body
-
-<h1> {{num1}} + {{num2}}</h1>
-<h1>
-{{answer}}
-
-</h1>
-<div style align="center">
-<form type="POST" action="#answer">
-    {% for item in choice %}
-    <button type="submit", name="choice{{item}}"> {{item}}</button>
-    {% endfor %}
-
-
-    {% if item == answer %}
-        This is the answer
+<h1> {{num1}} </h1>
+    {% if chosen_operator == 'addition'%}
+    <h1> + </h1>
     {% else %}
-        Wrong answer
+    <h1> - </h1>
     {% endif %}
+   <h1>{{num2}}</h1>
+<h1 id="answer" name="{{answer}}"></h1>
+
+<div style align="center">
+<form type="POST" action="index.html">
 
 </form>
-
+{% for item in choice %}
+<button class="ans_btn" id="choice{{item}}"> {{item}}</button>
+{% endfor %}
 </div>
-
+<script src="{% static 'counter.js' %}"> </script>
 {% endblock body%} 

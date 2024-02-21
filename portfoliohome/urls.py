@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+#add for static files
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', view=views.index, name='homepage'),
@@ -29,3 +32,6 @@ urlpatterns = [
     path('index.html', view=views.index, name='index'),
 #    path(route='', view=views.index, name='homepage'),
 ]
+
+#add for static files
+urlpatterns += staticfiles_urlpatterns()
