@@ -1,9 +1,11 @@
 from django.shortcuts import render
-import random, json
+import random, json, math
 
 # Create your views here.
 global_level = ['beginner', 'easy','medium','hard',]
 global_operator = ['addition','subtraction',]
+global_counter = 0
+global_score = 0
 
 def add_two_numbers(x,y):
     """adds two numbers"""
@@ -47,10 +49,18 @@ def process_inputs(request_data):
         choice_deviation = random.randint(200,800)
     else:
         print("choose level")
+
+    if num2 > num1:
+        print("true")
+        temp = num1
+        num1 = num2
+        num2 = temp
+
     ans = choose_operator(operator, num1, num2)
     choice.append(ans)
     choice.append(ans + choice_deviation)
     choice.append(ans - choice_deviation)
+    random.shuffle(choice)
 
     return int(ans), num1, num2, choice
     
@@ -63,6 +73,18 @@ def index(request):
 def startgame(request):
     """starts the game"""
     if request.method == "POST":
+        global global_counter, global_score
+        print(request.POST)
+        global_score = request.POST['score']
+
+        if request.POST['score'] == '': #math.isnan(str(request.POST['score'])):
+            global_score = 0
+        else:
+            global_score = int(request.POST['score'])
+
+        print(global_score)
+        global_counter += 1
+
         request_data = request.POST #request.POST.items
         ans, num1, num2, choice = process_inputs(request_data)
         operator = str(request.POST['operator']).lower()
@@ -76,6 +98,8 @@ def startgame(request):
         'chosen_level': str.lower(str(request_data['level'])),
         "level": global_level,
         "operator": global_operator,
+        'counter': global_counter,
+        'score': global_score,
         })
     else:
         return render(request, "mentaldrill/index.html",{
