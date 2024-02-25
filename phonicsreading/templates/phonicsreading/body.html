@@ -1,0 +1,21 @@
+
+{% extends "phonicsreading/index.html" %}
+{% load static %}
+{% block body %}
+
+This is the body
+
+<div id="phonics_list_container" style="display:flex; flex-direction: row; justify-content: center; align-items: center;">
+
+
+ <h1 style="font-size: 70px;">   {{question}}   </h1>
+
+
+</div>
+<div id="choices_container">
+{% for item in choice %}
+<button name="ans_btn" id="choice{{item}}" type="button" style="background-color:rgb(123, 123, 242);font-size:50px;padding: 15px 32px;">   {{item}}    </button> 
+{% endfor %}
+</div>
+{% endblock body %}
+<div> <script src="{%static 'phonicsreading/tts.js' %}"></script> </div>

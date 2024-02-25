@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +8,48 @@
 </head>
     <body>
         <div class="container p-5 my-5 border text-center">
-        <table class="table table-striped-columns">
-        <tr> <td>
-            This is header
-            </td>
-        </tr>
-        <tr style="height:200px"> <td> This is leftside </td>
-            <td>
-            This is body
+
             <div class="container p-5 my-5 border text-center">
             
-                <h1> Coding Notes</h1>
+                <h1> Phonics Reading </h1>
+                <div>
+                    <form id="submit_selections" method="POST" action="body.html">
+                        {% csrf_token %}
+                        <select name="level" id="level">
+                            {% for option in level %}
+                            {% if option == chosen_level %}
+                            <option value="{{option}}" selected>{{option}}</option>
+                            {%else%}
+                            <option value="{{option}}">{{option}}</option>
+                            {%endif%}
+                            {%endfor%}
+                          </select>
+                          
+                        <input type="text" name="time_limit" placeholder="time limit">
+
+                        <select name="num_of_letter" id="num_of_letter">
+                            {% for option in num_of_letter %}
+                            {% if option == num_of_letter %}
+                            <option value="{{option}}" selected>{{option}}</option>
+                            {%else%}
+                            <option value="{{option}}">{{option}}</option>
+                            {%endif%}
+                            {%endfor%}
+                          </select>
+                        <button type="submit", name="start_btn"> Start</button>
+                        <h3>Number of tries:  {{counter}} </h3>
+                        <div> <h1> Score: </h1><input type="text" name="score" id="score" style="height:80px;font-size:30pt;width:60px"  value="{{score}}" > </div>
+                    </form>
+                </div>
+
+                <button onclick="speak();">Speak</button>
+                <script>
+                function speak() {
+                  speechSynthesis.speak(new SpeechSynthesisUtterance("{{question}}"));
+                }
+                speak();
+                </script>
+
             {% block body %}
 
             {% endblock body %}
@@ -26,11 +58,7 @@
 
             {% endblock footer %}
             </div>
-            </td>
-            <td> This is rightside </td>
-        </tr>
-        <tr> <td>>This is the footer </td</tr>
-        </table>
+
         </div>
     </body>
 
